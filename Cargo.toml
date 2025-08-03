@@ -1,0 +1,14 @@
+[package]
+name = "magique"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = "1.0.98"
+clap = { version = "4.5.42", features = [
+    "derive",
+    "unicode",
+    "wrap_help",
+    "cargo",
+] }
+crc = "3.3.0"
