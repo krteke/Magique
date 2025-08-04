@@ -58,7 +58,7 @@ pub fn args() -> ArgMatches {
                         .value_parser(value_parser!(PathBuf)),
                 )
                 .arg(
-                    arg!(<HPNG_PATH> "png file to be hidden")
+                    arg!(<HPNG_PATH> "file to be hidden")
                         .value_parser(value_parser!(PathBuf))
                         .action(ArgAction::Append),
                 )

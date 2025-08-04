@@ -114,11 +114,10 @@ fn decode(bytes: Vec<u8>, chunk_type: &str) -> Result<(), anyhow::Error> {
         for chunk in png.chunks() {
             if *chunk.chunk_type() == ChunkType::from_str("scPG")? {
                 let output_path = PathBuf::from(format!("./{}.png", num));
-                let hidden_png = Png::try_from(chunk.data())?;
-                let png_bytes = hidden_png.as_bytes();
-                match fs::write(&output_path, png_bytes) {
+
+                match fs::write(&output_path, chunk.data()) {
                     Ok(_) => {
-                        println!("成功解密图片 {:?}", output_path);
+                        println!("成功解密 {:?}", output_path);
                     }
                     Err(e) => {
                         return Err(anyhow!("无法写入文件到 {:?} ，错误是: {}", output_path, e));
@@ -206,7 +205,7 @@ fn hide(
     let png_bytes = original_png.as_bytes();
 
     match fs::write(output_file, png_bytes) {
-        Ok(_) => println!("成功将图片隐藏在 {:?} 中", output_file),
+        Ok(_) => println!("成功将文件隐藏在 {:?} 中", output_file),
         Err(e) => return Err(anyhow!("Failed to write PNG file: {}", e)),
     }
 
