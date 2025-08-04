@@ -53,13 +53,13 @@ impl Png {
         &self.header
     }
 
-    fn chunks(&self) -> &[Chunk] {
+    pub fn chunks(&self) -> &[Chunk] {
         &self.chunks
     }
 
     fn chunk_by_type(&self, chunk_type: &str) -> Option<&Chunk> {
         self.chunks().iter().find(|chunk| {
-            if let Ok(s) = std::str::from_utf8(&chunk.chunk_type().bytes) {
+            if let Ok(s) = std::str::from_utf8(&chunk.chunk_type().bytes()) {
                 s == chunk_type
             } else {
                 false

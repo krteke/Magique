@@ -4,11 +4,11 @@ use anyhow::anyhow;
 
 #[derive(PartialEq, Eq, Debug)]
 pub struct ChunkType {
-    pub bytes: [u8; 4],
+    bytes: [u8; 4],
 }
 
 impl ChunkType {
-    fn bytes(&self) -> [u8; 4] {
+    pub fn bytes(&self) -> [u8; 4] {
         self.bytes
     }
 

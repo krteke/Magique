@@ -15,7 +15,7 @@ impl Chunk {
         let png_crc = Crc::<u32>::new(&CRC_32_ISO_HDLC);
         let length = data.len() as u32;
         let value: Vec<u8> = chunk_type
-            .bytes
+            .bytes()
             .iter()
             .chain(data.iter())
             .copied()
@@ -42,7 +42,7 @@ impl Chunk {
         &self.data
     }
 
-    fn crc(&self) -> u32 {
+    pub fn crc(&self) -> u32 {
         self.crc
     }
 
@@ -53,7 +53,7 @@ impl Chunk {
 
     pub fn as_bytes(&self) -> Vec<u8> {
         let length_bytes = self.length().to_be_bytes();
-        let chunk_type_bytes = self.chunk_type().bytes;
+        let chunk_type_bytes = self.chunk_type().bytes();
         let data_bytes = self.data();
         let crc_bytes = self.crc().to_be_bytes();
 
