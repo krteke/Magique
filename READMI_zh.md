@@ -21,6 +21,8 @@
 
 - [ ] ......
 
+- [ ] 文字/图像隐写
+
 ## Thanks
 
 https://jrdngr.github.io/pngme_book/introduction.html
